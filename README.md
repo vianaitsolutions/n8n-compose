@@ -69,4 +69,4 @@ Com o IP público estático em mãos, foram criados os seguintes registros do ti
 * **PostgreSQL**: É o banco de dados relacional principal do n8n. Ele é responsável por armazenar de forma persistente todos os dados críticos, como os workflows criados, as credenciais salvas e os históricos de execução. Seu uso é fundamental para a operação e a integridade dos dados no n8n.
 
 ---
-*Este projeto foi desenvolvido por [Viana IT Solutions](vianait.com).*
+*Este projeto foi desenvolvido pela [Viana IT Solutions](https://vianait.com) | [GitHub](https://github.com/vianaitsolutions)*
