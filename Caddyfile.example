@@ -1,0 +1,38 @@
+#Retire o .example do nome, o nome do arquivo deve ser somente "Caddyfile"
+{
+	email {$LETSENCRYPT_EMAIL}
+}
+
+{$N8N_PUBLIC_HOST} {
+	encode zstd gzip
+
+	tls {
+		issuer acme {
+			disable_tlsalpn_challenge
+		}
+	}
+
+	reverse_proxy n8n:5678
+}
+
+{$WAHA_PUBLIC_HOST} {
+	encode zstd gzip
+
+	tls {
+		issuer acme {
+			disable_tlsalpn_challenge
+		}
+	}
+
+	@acme_waha path /.well-known/*
+	@waha_html not path /.well-known/*
+
+	basicauth @waha_html {
+		user HASH_DO_PASSWORD 
+	}
+
+	reverse_proxy waha:3000
+}
+#Para criar o hash da senha para acessar o Waha, basta executar o comando abaixo:
+#  docker run --rm caddy:2.7 caddy hash-password --plaintext 'SenhaForte!'
+# Basta copiar o hash que imprimir na tela, e alterar aqui dentro do arquivo, onde está "HASH_DO_PASSWORD"
